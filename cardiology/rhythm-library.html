@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ECG Rhythm Library | IWCC Paramedic Academy</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fa;
+    line-height:1.6;
+}
+
+header{
+    background:#002855;
+    color:white;
+    padding:30px;
+    text-align:center;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.section{
+    background:white;
+    margin-bottom:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+
+.nav{
+    background:#e8f4ff;
+}
+
+.nav a{
+    text-decoration:none;
+    font-weight:bold;
+    color:#003366;
+}
+
+h1,h2,h3{
+    color:#002855;
+}
+
+.category{
+    background:#eef6ff;
+    padding:15px;
+    border-left:5px solid #003366;
+    margin-bottom:15px;
+}
+
+.rhythm{
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:15px;
+    margin-bottom:15px;
+}
+
+.easy{
+    border-left:5px solid #28a745;
+}
+
+.medium{
+    border-left:5px solid #ffc107;
+}
+
+.hard{
+    border-left:5px solid #dc3545;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table, th, td{
+    border:1px solid #ccc;
+}
+
+th{
+    background:#002855;
+    color:white;
+}
+
+th,td{
+    padding:10px;
+}
+
+details{
+    background:#f7f7f7;
+    padding:10px;
+    margin-top:10px;
+    border-radius:5px;
+}
+
+.challenge{
+    background:#fff8dc;
+    padding:15px;
+    border-radius:8px;
+}
+
+.button{
+    display:inline-block;
+    padding:12px 18px;
+    background:#002855;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>ECG Rhythm Library</h1>
+
+<p>
+Rapid Rhythm Recognition and Registry Review
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="section nav">
+
+<a href="../index.html">🏠 Home</a> |
+<a href="sinus-rhythms.html">Sinus Rhythms</a> |
+<a href="atrial-rhythms.html">Atrial Rhythms</a> |
+<a href="junctional-rhythms.html">Junctional Rhythms</a> |
+<a href="av-blocks.html">AV Blocks</a> |
+<a href="ventricular-rhythms.html">Ventricular Rhythms</a>
+
+</div>
+
+<div class="section">
+
+<h2>How to Use This Library</h2>
+
+<ol>
+
+<li>Identify Rate</li>
+
+<li>Assess Rhythm Regularity</li>
+
+<li>Evaluate P Waves</li>
+
+<li>Measure PR Interval</li>
+
+<li>Measure QRS Width</li>
+
+<li>Determine Rhythm Origin</li>
+
+<li>Assess Patient Stability</li>
+
+</ol>
+
+</div>
+
+<div class="section">
+
+<h2>Rhythm Recognition Master Table</h2>
+
+<table>
+
+<tr>
+<th>Rhythm</th>
+<th>Rate</th>
+<th>Regular?</th>
+<th>P Waves</th>
+<th>QRS</th>
+</tr>
+
+<tr>
+<td>NSR</td>
+<td>60-100</td>
+<td>Yes</td>
+<td>Normal</td>
+<td>Narrow</td>
+</tr>
+
+<tr>
+<td>Sinus Bradycardia</td>
+<td><60</td>
+<td>Yes</td>
+<td>Normal</td>
+<td>Narrow</td>
+</tr>
+
+<tr>
+<td>Sinus Tachycardia</td>
+<td>>100</td>
+<td>Yes</td>
+<td>Normal</td>
+<td>Narrow</td>
+</tr>
+
+<tr>
+<td>Atrial Flutter</td>
+<td>Variable</td>
+<td>Usually</td>
+<td>Flutter Waves</td>
+<td>Narrow</td>
+</tr>
+
+<tr>
+<td>Atrial Fibrillation</td>
+<td>Variable</td>
+<td>No</td>
+<td>Absent</td>
+<td>Narrow</td>
+</tr>
+
+<tr>
+<td>Junctional</td>
+<td>40-60</td>
+<td>Yes</td>
+<td>Absent/Retrograde</td>
+<td>Narrow</td>
+</tr>
+
+<tr>
+<td>VT</td>
+<td>>100</td>
+<td>Usually</td>
+<td>Absent</td>
+<td>Wide</td>
+</tr>
+
+<tr>
+<td>VF</td>
+<td>N/A</td>
+<td>No</td>
+<td>None</td>
+<td>Chaotic</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+
+<h2>Sinus Rhythm Recognition</h2>
+
+<div class="rhythm easy">
+
+<h3>Normal Sinus Rhythm</h3>
+
+<ul>
+
+<li>60-100 bpm</li>
+
+<li>Regular</li>
+
+<li>P before every QRS</li>
+
+<li>PR 0.12-0.20</li>
+
+<li>Narrow QRS</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm easy">
+
+<h3>Sinus Bradycardia</h3>
+
+<ul>
+
+<li>Rate <60 bpm</li>
+
+<li>Regular rhythm</li>
+
+<li>Normal P waves</li>
+
+<li>Usually narrow QRS</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm easy">
+
+<h3>Sinus Tachycardia</h3>
+
+<ul>
+
+<li>Rate >100 bpm</li>
+
+<li>Regular rhythm</li>
+
+<li>Normal P waves</li>
+
+<li>Narrow QRS</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Atrial Rhythm Recognition</h2>
+
+<div class="rhythm medium">
+
+<h3>PACs</h3>
+
+<ul>
+
+<li>Premature beat</li>
+
+<li>Abnormal P wave</li>
+
+<li>Underlying rhythm interrupted</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm medium">
+
+<h3>Atrial Flutter</h3>
+
+<ul>
+
+<li>Sawtooth waves</li>
+
+<li>Atrial rate 250-350</li>
+
+<li>Often ventricular rate near 150</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm medium">
+
+<h3>Atrial Fibrillation</h3>
+
+<ul>
+
+<li>Irregularly irregular</li>
+
+<li>No identifiable P waves</li>
+
+<li>Variable ventricular response</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Junctional Rhythm Recognition</h2>
+
+<div class="rhythm medium">
+
+<h3>Junctional Escape Rhythm</h3>
+
+<ul>
+
+<li>40-60 bpm</li>
+
+<li>Absent or inverted P waves</li>
+
+<li>Narrow QRS</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm medium">
+
+<h3>Accelerated Junctional Rhythm</h3>
+
+<ul>
+
+<li>61-100 bpm</li>
+
+<li>Retrograde P waves</li>
+
+<li>Narrow QRS</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm medium">
+
+<h3>Junctional Tachycardia</h3>
+
+<ul>
+
+<li>>100 bpm</li>
+
+<li>Regular rhythm</li>
+
+<li>Digoxin toxicity association</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>AV Block Recognition</h2>
+
+<div class="rhythm medium">
+
+<h3>First Degree AV Block</h3>
+
+<ul>
+
+<li>PR >0.20 sec</li>
+
+<li>Every P conducted</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm medium">
+
+<h3>Mobitz I</h3>
+
+<ul>
+
+<li>Longer, Longer, Longer, Drop</li>
+
+<li>Progressive PR prolongation</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm hard">
+
+<h3>Mobitz II</h3>
+
+<ul>
+
+<li>Constant PR Interval</li>
+
+<li>Sudden dropped QRS</li>
+
+<li>Dangerous rhythm</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm hard">
+
+<h3>Third Degree AV Block</h3>
+
+<ul>
+
+<li>Complete AV Dissociation</li>
+
+<li>No relationship between P waves and QRS complexes</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Ventricular Rhythm Recognition</h2>
+
+<div class="rhythm hard">
+
+<h3>PVC</h3>
+
+<ul>
+
+<li>Early beat</li>
+
+<li>Wide bizarre QRS</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm hard">
+
+<h3>Idioventricular Rhythm</h3>
+
+<ul>
+
+<li>20-40 bpm</li>
+
+<li>Wide QRS</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm hard">
+
+<h3>Accelerated Idioventricular Rhythm</h3>
+
+<ul>
+
+<li>41-100 bpm</li>
+
+<li>Reperfusion rhythm</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm hard">
+
+<h3>Ventricular Tachycardia</h3>
+
+<ul>
+
+<li>Wide-complex tachycardia</li>
+
+<li>Treat as VT until proven otherwise</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm hard">
+
+<h3>Torsades de Pointes</h3>
+
+<ul>
+
+<li>Twisting morphology</li>
+
+<li>Associated with prolonged QT</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm hard">
+
+<h3>Ventricular Fibrillation</h3>
+
+<ul>
+
+<li>Chaotic waveform</li>
+
+<li>No cardiac output</li>
+
+<li>Shockable</li>
+
+</ul>
+
+</div>
+
+<div class="rhythm hard">
+
+<h3>Asystole</h3>
+
+<ul>
+
+<li>No electrical activity</li>
+
+<li>Not shockable</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>30 Second Rhythm Challenge</h2>
+
+<div class="challenge">
+
+<p><strong>Scenario 1</strong></p>
+
+<p>
+Rate 44 bpm, regular, P before every QRS.
+</p>
+
+<details>
+<summary>Answer</summary>
+
+Sinus Bradycardia
+
+</details>
+
+</div>
+
+<br>
+
+<div class="challenge">
+
+<p><strong>Scenario 2</strong></p>
+
+<p>
+Rate 150 bpm, sawtooth pattern.
+</p>
+
+<details>
+<summary>Answer</summary>
+
+Atrial Flutter
+
+</details>
+
+</div>
+
+<br>
+
+<div class="challenge">
+
+<p><strong>Scenario 3</strong></p>
+
+<p>
+Irregularly irregular, no visible P waves.
+</p>
+
+<details>
+<summary>Answer</summary>
+
+Atrial Fibrillation
+
+</details>
+
+</div>
+
+<br>
+
+<div class="challenge">
+
+<p><strong>Scenario 4</strong></p>
+
+<p>
+Regular wide-complex tachycardia at 180 bpm.
+</p>
+
+<details>
+<summary>Answer</summary>
+
+Ventricular Tachycardia
+
+</details>
+
+</div>
+
+<br>
+
+<div class="challenge">
+
+<p><strong>Scenario 5</strong></p>
+
+<p>
+Progressively longer PR intervals followed by a dropped QRS.
+</p>
+
+<details>
+<summary>Answer</summary>
+
+Mobitz I
+
+</details>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Registry High-Yield Rhythms</h2>
+
+<ul>
+
+<li>Sinus Bradycardia</li>
+
+<li>Atrial Fibrillation</li>
+
+<li>Atrial Flutter</li>
+
+<li>SVT</li>
+
+<li>Mobitz I</li>
+
+<li>Mobitz II</li>
+
+<li>Third Degree AV Block</li>
+
+<li>Ventricular Tachycardia</li>
+
+<li>Torsades de Pointes</li>
+
+<li>Ventricular Fibrillation</li>
+
+<li>PEA</li>
+
+<li>Asystole</li>
+
+</ul>
+
+</div>
+
+<div class="section">
+
+<h2>Next Steps</h2>
+
+<ul>
+
+<li>Review Rhythm Library Weekly</li>
+
+<li>Complete Cardiology Final Exam Monthly</li>
+
+<li>Practice Rhythm Interpretation Daily</li>
+
+<li>Use Rhythm Recognition Method Every Time</li>
+
+</ul>
+
+</div>
+
+<div class="section">
+
+<a class="button" href="../index.html">
+⬅ Return Home
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
