@@ -21,7 +21,7 @@ header{
     background:#003366;
     color:white;
     text-align:center;
-    padding:30px;
+    padding:40px;
 }
 
 .container{
@@ -39,7 +39,7 @@ header{
 }
 
 h1{
-    margin:0;
+    margin-bottom:10px;
 }
 
 h2{
@@ -49,21 +49,31 @@ h2{
 }
 
 .card{
-    background:#f9f9f9;
+    background:#f8f9fa;
     border-left:5px solid #003366;
     padding:15px;
     margin-bottom:10px;
-    border-radius:5px;
+    border-radius:6px;
+    transition:.2s;
+}
+
+.card:hover{
+    background:#e8f4ff;
 }
 
 .card a{
     text-decoration:none;
     color:#003366;
     font-weight:bold;
+    font-size:1.05rem;
 }
 
-.card:hover{
-    background:#e8f4ff;
+.complete{
+    border-left:5px solid #28a745;
+}
+
+.in-progress{
+    border-left:5px solid #ffc107;
 }
 
 .coming-soon{
@@ -72,8 +82,18 @@ h2{
 
 .footer{
     text-align:center;
-    padding:20px;
     color:#666;
+    padding:20px;
+}
+
+.badge{
+    display:inline-block;
+    background:#28a745;
+    color:white;
+    padding:3px 8px;
+    border-radius:4px;
+    font-size:.8rem;
+    margin-left:8px;
 }
 
 </style>
@@ -87,7 +107,11 @@ h2{
 <h1>IWCC Paramedic Academy</h1>
 
 <p>
-Interactive Study Platform for Paramedic Students
+Interactive Learning Platform for Paramedic Students
+</p>
+
+<p>
+Built for Success in Didactic, Clinicals, Field Internship, and Registry Preparation
 </p>
 
 </header>
@@ -96,66 +120,94 @@ Interactive Study Platform for Paramedic Students
 
 <div class="module-section">
 
-<h2>🫀 Cardiology</h2>
+<h2>🫀 Cardiology Learning Path</h2>
 
-<div class="card">
-<a href="cardiology/cardiac-ap.html">
-Module 1 – Cardiac Anatomy & Physiology
-</a>
+<div class="card complete">
+    <a href="cardiology/cardiac-ap.html">
+        Module 1 • Cardiac Anatomy & Physiology
+    </a>
+    <span class="badge">Complete</span>
 </div>
 
-<div class="card">
-<a href="cardiology/ecg-basics.html">
-Module 2 – ECG Basics
-</a>
+<div class="card complete">
+    <a href="cardiology/ecg-basics.html">
+        Module 2 • ECG Basics
+    </a>
+    <span class="badge">Complete</span>
 </div>
 
-<div class="card">
-<a href="cardiology/sinus-rhythms.html">
-Module 3 – Sinus Rhythms
-</a>
+<div class="card complete">
+    <a href="cardiology/sinus-rhythms.html">
+        Module 3 • Sinus Rhythms
+    </a>
+    <span class="badge">Complete</span>
 </div>
 
-<div class="card">
-<a href="cardiology/atrial-rhythms.html">
-Module 4 – Atrial Rhythms
-</a>
+<div class="card complete">
+    <a href="cardiology/atrial-rhythms.html">
+        Module 4 • Atrial Rhythms
+    </a>
+    <span class="badge">Complete</span>
 </div>
 
-<div class="card">
-<a href="cardiology/junctional-rhythms.html">
-Module 5 – Junctional Rhythms
-</a>
+<div class="card complete">
+    <a href="cardiology/junctional-rhythms.html">
+        Module 5 • Junctional Rhythms
+    </a>
+    <span class="badge">Complete</span>
 </div>
 
-<div class="card">
-<a href="cardiology/av-blocks.html">
-Module 6 – AV Blocks
-</a>
+<div class="card complete">
+    <a href="cardiology/av-blocks.html">
+        Module 6 • AV Blocks
+    </a>
+    <span class="badge">Complete</span>
 </div>
 
-<div class="card">
-<a href="cardiology/ventricular-rhythms.html">
-Module 7 – Ventricular Rhythms
-</a>
+<div class="card complete">
+    <a href="cardiology/ventricular-rhythms.html">
+        Module 7 • Ventricular Rhythms
+    </a>
+    <span class="badge">Complete</span>
 </div>
 
-<div class="card">
-<a href="cardiology/twelve-lead-ecg.html">
-Module 8 – 12-Lead ECG Interpretation
-</a>
+<div class="card complete">
+    <a href="cardiology/twelve-lead-ecg.html">
+        Module 8 • 12-Lead ECG Interpretation
+    </a>
+    <span class="badge">Complete</span>
 </div>
 
-<div class="card">
-<a href="cardiology/acute-coronary-syndromes.html">
-Module 9 – Acute Coronary Syndromes
-</a>
+<div class="card complete">
+    <a href="cardiology/acute-coronary-syndromes.html">
+        Module 9 • Acute Coronary Syndromes
+    </a>
+    <span class="badge">Complete</span>
 </div>
 
-<div class="card">
-<a href="cardiology/final-exam.html">
-Module 10 – Cardiology Final Exam
+<div class="card complete">
+    <a href="cardiology/final-exam.html">
+        Module 10 • Cardiology Final Exam
+    </a>
+    <span class="badge">Complete</span>
+</div>
+
+</div>
+
+<div class="module-section">
+
+<h2>📈 Rhythm Recognition Center</h2>
+
+<div class="card complete">
+
+<a href="cardiology/rhythm-library.html">
+ECG Rhythm Library & Recognition Drills
 </a>
+
+<p>
+Rapid review, flashcards, rhythm comparison tables, and board-style rhythm recognition practice.
+</p>
+
 </div>
 
 </div>
@@ -165,7 +217,21 @@ Module 10 – Cardiology Final Exam
 <h2>🌬 Respiratory</h2>
 
 <div class="card coming-soon">
-Coming Soon
+
+Airway Management
+
+</div>
+
+<div class="card coming-soon">
+
+Ventilation & Oxygenation
+
+</div>
+
+<div class="card coming-soon">
+
+Respiratory Emergencies
+
 </div>
 
 </div>
@@ -175,7 +241,21 @@ Coming Soon
 <h2>💊 Pharmacology</h2>
 
 <div class="card coming-soon">
-Coming Soon
+
+Pharmacology Foundations
+
+</div>
+
+<div class="card coming-soon">
+
+Medication Administration
+
+</div>
+
+<div class="card coming-soon">
+
+Cardiology Medications
+
 </div>
 
 </div>
@@ -185,7 +265,21 @@ Coming Soon
 <h2>🩸 Shock & Resuscitation</h2>
 
 <div class="card coming-soon">
-Coming Soon
+
+Shock Recognition
+
+</div>
+
+<div class="card coming-soon">
+
+Cardiac Arrest Management
+
+</div>
+
+<div class="card coming-soon">
+
+Post-ROSC Care
+
 </div>
 
 </div>
@@ -195,7 +289,21 @@ Coming Soon
 <h2>🚑 Trauma</h2>
 
 <div class="card coming-soon">
-Coming Soon
+
+Trauma Assessment
+
+</div>
+
+<div class="card coming-soon">
+
+Head & Spine Trauma
+
+</div>
+
+<div class="card coming-soon">
+
+Chest & Abdominal Trauma
+
 </div>
 
 </div>
@@ -205,7 +313,15 @@ Coming Soon
 <h2>👶 Pediatrics</h2>
 
 <div class="card coming-soon">
-Coming Soon
+
+Pediatric Assessment
+
+</div>
+
+<div class="card coming-soon">
+
+Pediatric Emergencies
+
 </div>
 
 </div>
@@ -215,7 +331,21 @@ Coming Soon
 <h2>📋 Registry Review</h2>
 
 <div class="card coming-soon">
-Coming Soon
+
+NREMT Review Hub
+
+</div>
+
+<div class="card coming-soon">
+
+Practice Exams
+
+</div>
+
+<div class="card coming-soon">
+
+Scenario-Based Testing
+
 </div>
 
 </div>
@@ -225,7 +355,11 @@ Coming Soon
 <div class="footer">
 
 <p>
-IWCC Paramedic Academy | Built for Success in Class, Clinicals, and Registry Preparation
+IWCC Paramedic Academy
+</p>
+
+<p>
+Learn • Practice • Apply • Succeed
 </p>
 
 </div>
