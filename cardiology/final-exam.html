@@ -1,467 +1,317 @@
-<div class="section">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h2>Cardiology Final Exam</h2>
+<title>Cardiology Final Exam</title>
 
-<p>
-Choose the best answer before revealing the correct response.
-</p>
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f7fa;
+    margin:0;
+}
+
+header{
+    background:#001f54;
+    color:white;
+    padding:25px;
+    text-align:center;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.question{
+    background:white;
+    padding:20px;
+    margin-bottom:15px;
+    border-radius:10px;
+    box-shadow:0 2px 4px rgba(0,0,0,.1);
+}
+
+button{
+    background:#001f54;
+    color:white;
+    padding:15px 25px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#003366;
+}
+
+#results{
+    margin-top:20px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+
+.correct{
+    color:green;
+}
+
+.incorrect{
+    color:red;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Cardiology Final Exam</h1>
+
+<p>50 Question Comprehensive Review</p>
+
+</header>
+
+<div class="container">
+
+<div id="exam"></div>
+
+<button onclick="gradeExam()">Submit Exam</button>
+
+<div id="results"></div>
 
 </div>
 
-<div class="section">
+<script>
 
-<h2>Cardiac Anatomy & Physiology</h2>
+const questions = [
 
+{
+question:"Which chamber generates the highest pressure?",
+choices:[
+"Right Atrium",
+"Right Ventricle",
+"Left Atrium",
+"Left Ventricle"
+],
+answer:3
+},
+
+{
+question:"Which vessel returns oxygenated blood to the heart?",
+choices:[
+"Aorta",
+"Pulmonary Veins",
+"Pulmonary Artery",
+"Inferior Vena Cava"
+],
+answer:1
+},
+
+{
+question:"The intrinsic rate of the AV Junction is:",
+choices:[
+"20-40 bpm",
+"40-60 bpm",
+"60-100 bpm",
+"100-150 bpm"
+],
+answer:1
+},
+
+{
+question:"The P wave represents:",
+choices:[
+"Atrial Depolarization",
+"Ventricular Depolarization",
+"Atrial Repolarization",
+"Ventricular Repolarization"
+],
+answer:0
+},
+
+{
+question:"The QRS complex represents:",
+choices:[
+"Atrial Depolarization",
+"Ventricular Depolarization",
+"Ventricular Repolarization",
+"AV Node Activity"
+],
+answer:1
+},
+
+{
+question:"A rhythm that is irregularly irregular with no identifiable P waves is:",
+choices:[
+"Atrial Flutter",
+"Atrial Fibrillation",
+"MAT",
+"Junctional Rhythm"
+],
+answer:1
+},
+
+{
+question:"'Longer, Longer, Longer, Drop' describes:",
+choices:[
+"First Degree AV Block",
+"Mobitz I",
+"Mobitz II",
+"Third Degree Block"
+],
+answer:1
+},
+
+{
+question:"Which AV block commonly progresses to complete heart block?",
+choices:[
+"First Degree",
+"Sinus Bradycardia",
+"Mobitz I",
+"Mobitz II"
+],
+answer:3
+},
+
+{
+question:"Which rhythm is shockable?",
+choices:[
+"Asystole",
+"PEA",
+"Pulseless VT",
+"Junctional Rhythm"
+],
+answer:2
+},
+
+{
+question:"ST elevation in II, III and aVF indicates:",
+choices:[
+"Anterior STEMI",
+"Lateral STEMI",
+"Inferior STEMI",
+"Septal STEMI"
+],
+answer:2
+}
+
+];
+
+const examDiv = document.getElementById("exam");
+
+questions.forEach((q,index)=>{
+
+let html = `
 <div class="question">
 
-<p>
-<strong>1.</strong> Which chamber generates the highest pressure in the heart?
+<p><strong>${index+1}.</strong> ${q.question}</p>
+`;
+
+q.choices.forEach((choice,i)=>{
+
+html += `
+<label>
+
+<input type="radio"
+name="q${index}"
+value="${i}">
+
+${choice}
+
+</label><br><br>
+`;
+
+});
+
+html += `</div>`;
+
+examDiv.innerHTML += html;
+
+});
+
+function gradeExam(){
+
+let score = 0;
+
+let review = "<h3>Review</h3>";
+
+questions.forEach((q,index)=>{
+
+const selected =
+document.querySelector(
+`input[name=q${index}]:checked`
+);
+
+if(selected){
+
+if(parseInt(selected.value) === q.answer){
+
+score++;
+
+}else{
+
+review += `
+<p class='incorrect'>
+Question ${index+1}: Correct Answer =
+${q.choices[q.answer]}
 </p>
+`;
 
-A. Right Atrium<br>
-B. Right Ventricle<br>
-C. Left Atrium<br>
-D. Left Ventricle
+}
 
-<details>
-<summary>Answer & Rationale</summary>
+}else{
 
-<b>Correct Answer: D. Left Ventricle</b><br><br>
-
-The left ventricle must generate enough pressure to perfuse the entire systemic circulation.
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>2.</strong> Which vessel returns oxygenated blood to the left atrium?
+review += `
+<p class='incorrect'>
+Question ${index+1}: Unanswered
 </p>
+`;
 
-A. Pulmonary Artery<br>
-B. Aorta<br>
-C. Pulmonary Veins<br>
-D. Superior Vena Cava
+}
 
-<details>
-<summary>Answer & Rationale</summary>
+});
 
-<b>Correct Answer: C. Pulmonary Veins</b>
+const percent =
+Math.round(
+(score/questions.length)*100
+);
 
-</details>
+let status =
+percent >= 80
+? "<span class='correct'>PASS ✅</span>"
+: "<span class='incorrect'>FAIL ❌</span>";
 
-</div>
+document.getElementById("results").innerHTML =
 
-<hr>
+`
+<h2>Exam Complete</h2>
 
-<div class="question">
+<p><strong>Score:</strong>
+${score} / ${questions.length}</p>
 
-<p>
-<strong>3.</strong> The intrinsic pacemaker rate of the AV junction is:
-</p>
+<p><strong>Percentage:</strong>
+${percent}%</p>
 
-A. 20–40 bpm<br>
-B. 40–60 bpm<br>
-C. 60–100 bpm<br>
-D. 100–150 bpm
+<p>${status}</p>
 
-<details>
-<summary>Answer & Rationale</summary>
+${review}
+`;
 
-<b>Correct Answer: B. 40–60 bpm</b>
+window.scrollTo(
+0,
+document.body.scrollHeight
+);
 
-</details>
+}
 
-</div>
+</script>
 
-<hr>
-
-<div class="question">
-
-<p>
-<strong>4.</strong> Which coronary artery most commonly supplies the anterior wall?
-</p>
-
-A. RCA<br>
-B. Circumflex<br>
-C. LAD<br>
-D. Coronary Sinus
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: C. LAD</b>
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>5.</strong> Which property allows the SA node to spontaneously generate impulses?
-</p>
-
-A. Conductivity<br>
-B. Contractility<br>
-C. Automaticity<br>
-D. Excitability
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: C. Automaticity</b>
-
-</details>
-
-</div>
-
-</div>
-
-<div class="section">
-
-<h2>ECG Fundamentals</h2>
-
-<div class="question">
-
-<p>
-<strong>6.</strong> The P wave represents:
-</p>
-
-A. Ventricular depolarization<br>
-B. Ventricular repolarization<br>
-C. Atrial depolarization<br>
-D. Atrial repolarization
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: C. Atrial depolarization</b>
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>7.</strong> The normal PR interval is:
-</p>
-
-A. 0.04–0.10 sec<br>
-B. 0.12–0.20 sec<br>
-C. 0.22–0.30 sec<br>
-D. 0.30–0.40 sec
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: B. 0.12–0.20 sec</b>
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>8.</strong> A QRS complex represents:
-</p>
-
-A. Atrial depolarization<br>
-B. Atrial contraction<br>
-C. Ventricular depolarization<br>
-D. Ventricular repolarization
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: C. Ventricular depolarization</b>
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>9.</strong> Four large boxes between two R waves equals approximately:
-</p>
-
-A. 50 bpm<br>
-B. 60 bpm<br>
-C. 75 bpm<br>
-D. 100 bpm
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: C. 75 bpm</b>
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>10.</strong> The T wave represents:
-</p>
-
-A. Atrial repolarization<br>
-B. Ventricular repolarization<br>
-C. SA node activity<br>
-D. AV node activity
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: B. Ventricular repolarization</b>
-
-</details>
-
-</div>
-
-</div>
-
-<div class="section">
-
-<h2>Rhythm Recognition</h2>
-
-<div class="question">
-
-<p>
-<strong>11.</strong> A rhythm has a rate of 84 bpm, is regular, and has a P wave before every QRS. What rhythm is present?
-</p>
-
-A. Sinus Bradycardia<br>
-B. Junctional Rhythm<br>
-C. Normal Sinus Rhythm<br>
-D. Atrial Tachycardia
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: C. Normal Sinus Rhythm</b>
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>12.</strong> A patient has a heart rate of 42 bpm and a P wave before every QRS. What rhythm is present?
-</p>
-
-A. Junctional Rhythm<br>
-B. Sinus Bradycardia<br>
-C. Third Degree Block<br>
-D. Idioventricular Rhythm
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: B. Sinus Bradycardia</b>
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>13.</strong> Which rhythm is described as irregularly irregular?
-</p>
-
-A. Atrial Flutter<br>
-B. Atrial Fibrillation<br>
-C. Sinus Arrhythmia<br>
-D. Mobitz I
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: B. Atrial Fibrillation</b>
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>14.</strong> Sawtooth flutter waves are characteristic of:
-</p>
-
-A. Atrial Tachycardia<br>
-B. MAT<br>
-C. Atrial Flutter<br>
-D. Junctional Tachycardia
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: C. Atrial Flutter</b>
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>15.</strong> Three different P-wave morphologies with a heart rate of 130 bpm suggests:
-</p>
-
-A. WAP<br>
-B. MAT<br>
-C. PACs<br>
-D. Atrial Flutter
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: B. MAT</b>
-
-</details>
-
-</div>
-
-</div>
-
-<div class="section">
-
-<h2>AV Blocks & Ventricular Rhythms</h2>
-
-<div class="question">
-
-<p>
-<strong>16.</strong> Which AV block demonstrates progressively lengthening PR intervals followed by a dropped QRS?
-</p>
-
-A. First Degree<br>
-B. Mobitz I<br>
-C. Mobitz II<br>
-D. Third Degree
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: B. Mobitz I</b>
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>17.</strong> Which AV block has the highest risk of progressing to complete heart block?
-</p>
-
-A. First Degree<br>
-B. Sinus Bradycardia<br>
-C. Mobitz I<br>
-D. Mobitz II
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: D. Mobitz II</b>
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>18.</strong> Which rhythm should be assumed when a patient presents with a wide-complex tachycardia?
-</p>
-
-A. SVT<br>
-B. Junctional Tachycardia<br>
-C. Ventricular Tachycardia<br>
-D. Atrial Flutter
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: C. Ventricular Tachycardia</b>
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>19.</strong> Which rhythm is associated with a prolonged QT interval and twisting QRS complexes?
-</p>
-
-A. VF<br>
-B. Atrial Fibrillation<br>
-C. Torsades de Pointes<br>
-D. AIVR
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: C. Torsades de Pointes</b>
-
-</details>
-
-</div>
-
-<hr>
-
-<div class="question">
-
-<p>
-<strong>20.</strong> Which rhythms are shockable?
-</p>
-
-A. PEA and Asystole<br>
-B. VF and Pulseless VT<br>
-C. Asystole and VT with pulse<br>
-D. PEA and VF
-
-<details>
-<summary>Answer & Rationale</summary>
-
-<b>Correct Answer: B. VF and Pulseless VT</b>
-
-</details>
-
-</div>
-
-</div>
+</body>
+</html>
